@@ -7,7 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from .forms import PostForm
-from .models import Post
+from .models import Post, Message
 
 # Create your views here.
 
@@ -77,8 +77,30 @@ def home(request):
 
 def post(request, pk):
     post = Post.objects.get(id=pk)
-    context = {'post': post}
+    post_messages = post.message_set.all().order_by('-created')
+    participants = post.participants.all()
+
+    if request.method == 'POST':
+        message = Message.objects.create(
+            user=request.user,
+            post=post,
+            body=request.POST.get('body'),
+        )
+        post.participants.add(request.user)
+        return redirect('post', pk=post.id)
+
+    context = {'post': post, 'post_messages': post_messages,
+               'participants': participants}
     return render(request, 'base/post.html', context)
+
+
+def userProfile(request, pk):
+    user = User.objects.get(id=pk)
+    posts = user.post_set.all()
+    post_messages = user.message_set.all()
+
+    context = {'user': user, 'posts': posts, 'post_messages': post_messages}
+    return render(request, 'base/profile.html', context)
 
 
 @login_required(login_url='login')
@@ -124,4 +146,19 @@ def delete(request, pk):
         return redirect('home')
 
     context = {'obj': post}
+    return render(request, 'base/delete.html', context)
+
+
+@login_required(login_url='login')
+def deleteMessage(request, pk):
+    message = Message.objects.get(id=pk)
+
+    if request.user != message.user:
+        return HttpResponse('You are not allowed here')
+
+    if request.method == 'POST':
+        message.delete()
+        return redirect('home')
+
+    context = {'obj': message}
     return render(request, 'base/delete.html', context)
