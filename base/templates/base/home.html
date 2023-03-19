@@ -3,7 +3,7 @@
 {% block content %}
 
 <style>
-  .home-page {
+  .home-container {
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
   }
@@ -20,7 +20,7 @@
 </style>
 
 
-<div class="home-page">
+<div class="home-container">
 
   <div>
     <h1>topics</h1>
@@ -28,13 +28,16 @@
 
   <div class="post-container">
     <h1>Feeds</h1>
+    <a href="{% url 'home' %}">All</a>
+    <h5>{{post_count}} post available</h5>
     <a href="{% url 'create-post' %}">Create Post</a>
 
     {% for post in posts %}
     <div>
       <a href="{% url 'update-post' post.id %}">Edit</a>
       <a href="{% url 'delete' post.id %}">Delete</a>
-      <span>@{{post.host.username}}</span>
+      <!-- dont forget to change the url to user when created the route -->
+      <span><a href="{% url 'home' %}?q={{post.host.username}}">@{{post.host.username}}</a></span>
       {% if post.image %}
       <img class="post-image" src="{{ post.image.url }}" alt="">
       {% endif %}
