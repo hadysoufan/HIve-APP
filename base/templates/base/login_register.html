@@ -2,8 +2,14 @@
 
 {% block content %}
 
+<style>
+  .login{
+    margin-top: 15rem;
+  }
+</style>
+
 {% if page == 'login' %}
-<div>
+<div class="login">
   <form action="" method="POST">
     {% csrf_token %}
 
