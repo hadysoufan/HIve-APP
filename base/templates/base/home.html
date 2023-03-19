@@ -1,0 +1,43 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<style>
+  .home-page {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr ;
+  }
+</style>
+
+
+<div class="home-page">
+
+  <div>
+    <h1>topics</h1>
+  </div>
+
+  <div>
+    <h1>Feeds</h1>
+    <a href="">Create Post</a>
+
+    {% for post in posts %}
+    <div>
+      <p>{{post.id}} - <a href="{% url 'post' post.id %}">@{{post.username}}</a></p>
+      <p>{{post.caption}}</p>
+      <hr>
+    </div>
+
+    {% endfor %}
+  </div>
+
+
+  <div>
+    <h1>Activity</h1>
+  </div>
+
+
+</div>
+
+
+
+{% endblock %}
