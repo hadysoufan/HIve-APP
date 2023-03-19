@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hive | Welcome</title>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href='{% static "img/honeycomb.png" %}' type="image/x-icon">
+
+  <!-- CSS Link Sheets -->
+  <link rel="stylesheet" href='{% static "css/hive.css" %}'>
+  <link rel="stylesheet" href='{% static "css/profile.css" %}'>
+
+  <!-- iconscout CDN link -->
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+
+  <!-- Bootstrap CSS -->
+
+</head>
+
+<body>
+
+  {% include 'hivenav.html' %}
+
+  {% block content %}
+
+
+  {% endblock content %}
+
+
+  <!-- hive script link -->
+  <script src="{% static 'js/hive.js' %}"></script>
+
+</body>
+
+</html>
