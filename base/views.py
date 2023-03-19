@@ -1,8 +1,42 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from .forms import PostForm
 from .models import Post
+
 # Create your views here.
+
+
+def loginPage(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+        try:
+            user = User.object.get(username=username)
+        except:
+            messages.error(request, 'User does not exists')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+
+        else:
+            messages.error(request, 'Username or password does not exists')
+
+    context = {}
+    return render(request, 'base/login_register.html', context)
+
+
+def logoutUser(request):
+    logout(request)
+    return redirect('home')
 
 
 def home(request):
@@ -23,6 +57,7 @@ def post(request, pk):
     return render(request, 'base/post.html', context)
 
 
+@login_required(login_url='login')
 def createPost(request):
     form = PostForm()
     if request.method == 'POST':
@@ -35,6 +70,7 @@ def createPost(request):
     return render(request, 'base/post_form.html', context)
 
 
+@login_required(login_url='login')
 def updatePost(request, pk):
     post = Post.objects.get(id=pk)
     form = PostForm(instance=post)
@@ -48,6 +84,7 @@ def updatePost(request, pk):
     return render(request, 'base/post_form.html', context)
 
 
+@login_required(login_url='login')
 def delete(request, pk):
     post = Post.objects.get(id=pk)
     if request.method == 'POST':
