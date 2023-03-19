@@ -1,28 +1,59 @@
-{% extends 'index.html' %}
-
-
+{% extends 'main.html' %}
 {% block content %}
+{% load static %}
 
-<style>
-  .profile-container {
-    display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
-  }
-</style>
 
-<h1>{{user.username}}</h1>
 
-<div class="profile-container">
-  <div>
-
+<header>
+  <div class="container">
+    <div class="profile">
+      <div class="profile-image">
+        <img class="main-profile-img" src="{% static 'img/default.png' %}" alt="Default Img">
+      </div>
+      <div class="profile-user-settings">
+        <h1 class="profile-user-name">{{user.username}}</h1>
+        <a href="{% url 'edit-profile' user.id %}"><button class="btn profile-edit-btn">Edit Profile</button></a>
+        <button class="btn profile-settings-btn" aria-label="profile settings"><i class="fas fa-cog"
+            aria-hidden="true"></i></button>
+      </div>
+      <div class="profile-stats">
+        <ul>
+          <li><span class="profile-stat-count">164</span> posts</li>
+          <li><span class="profile-stat-count">10B+</span> followers</li>
+          <li><span class="profile-stat-count">206</span> following</li>
+        </ul>
+      </div>
+      <div class="profile-bio">
+        <p><span class="profile-real-name">{{ user.first_name }}</span> {{ user.profile.bio|default:"No bio available"}}
+        </p>
+      </div>
+    </div>
+    <!-- End of profile section -->
   </div>
-
-  <div>
-    {% include 'base/feeds.html' %}
-  </div>
-
-  <div></div>
-</div>
-
-
+  <!-- End of container -->
+</header>
+<main>
+  <div class="container">
+    {% for post in posts %}
+    <div class="gallery">
+      <div class="gallery-item" tabindex="0">
+        {% if post.image %}
+        <img src="{{ post.image.url }}" class="gallery-image" alt="">
+        {% endif %}
+        <div class="gallery-item-info">
+          <ul>
+            <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart"
+                aria-hidden="true"></i> 56</li>
+            <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment"
+                aria-hidden="true"></i> 2</li>
+          </ul>
+        </div>
+        
+      </div>
+      
+      <!-- End of gallery -->
+    </div>
+    {% endfor %}
+    <!-- End of container -->
+</main>
 {% endblock %}
