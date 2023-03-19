@@ -5,7 +5,17 @@
 <style>
   .home-page {
     display: grid;
-    grid-template-columns: 1fr 3fr 1fr ;
+    grid-template-columns: 1fr 3fr 1fr;
+  }
+
+  .post-container div {
+    display: block;
+  }
+
+  .post-image {
+    width: 200px;
+    height: 150px;
+    display: block;
   }
 </style>
 
@@ -16,13 +26,18 @@
     <h1>topics</h1>
   </div>
 
-  <div>
+  <div class="post-container">
     <h1>Feeds</h1>
-    <a href="">Create Post</a>
+    <a href="{% url 'create-post' %}">Create Post</a>
 
     {% for post in posts %}
     <div>
-      <p>{{post.id}} - <a href="{% url 'post' post.id %}">{{post.name}}</a></p>
+      <a href="{% url 'update-post' post.id %}">Edit</a>
+      <a href="{% url 'delete' post.id %}">Delete</a>
+      <span>@{{post.host.username}}</span>
+      {% if post.image %}
+      <img class="post-image" src="{{ post.image.url }}" alt="">
+      {% endif %}
       <p>{{post.description}}</p>
       <hr>
     </div>
