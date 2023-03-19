@@ -6,5 +6,9 @@ from . import views
 urlpatterns = [
     path('', views.home, name='home'),
     path('post/<str:pk>', views.post, name='post'),
+
+    path('create-post/', views.createPost, name='create-post'),
+    path('update-post/<str:pk>', views.updatePost, name='update-post'),
+    path('delete/<str:pk>', views.delete, name='delete'),
 ] +  static(settings.MEDIA_URL,
              document_root=settings.MEDIA_ROOT)
