@@ -1,0 +1,31 @@
+{% block content %}
+<style>
+  .post-image {
+    width: 200px;
+    height: 150px;
+    display: block;
+  }
+</style>
+
+<h1>Feeds</h1>
+<a href="{% url 'home' %}">All</a>
+<h5>{{post_count}} post available</h5>
+<a href="{% url 'create-post' %}">Create Post</a>
+
+{% for post in posts %}
+<div>
+  {% if request.user == post.host %}
+  <a href="{% url 'update-post' post.id %}">Edit</a>
+  <a href="{% url 'delete-post' post.id %}">Delete</a>
+  {% endif %}
+  <!-- dont forget to change the url to user when created the route -->
+  <a href="{% url 'user-profile' post.host.id %}">@{{post.host.username}}</a>
+  {% if post.image %}
+  <a href="{% url 'post' post.id %}"><img class="post-image" src="{{ post.image.url }}" alt=""></a>
+  {% endif %}
+  <p>{{post.description}}</p>
+  <hr>
+</div>
+{% endfor %}
+
+{% endblock %}
