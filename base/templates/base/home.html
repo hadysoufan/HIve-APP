@@ -22,8 +22,8 @@
 
     {% for post in posts %}
     <div>
-      <p>{{post.id}} - <a href="{% url 'post' post.id %}">@{{post.username}}</a></p>
-      <p>{{post.caption}}</p>
+      <p>{{post.id}} - <a href="{% url 'post' post.id %}">{{post.name}}</a></p>
+      <p>{{post.description}}</p>
       <hr>
     </div>
 
