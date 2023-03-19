@@ -8,7 +8,7 @@ class Post(models.Model):
     host = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     image = models.ImageField(upload_to='post-image/', blank=True, null=True)
     description = models.TextField(null=True, blank=True)
-    # participants =
+    participants = models.ManyToManyField(User, related_name='participants' ,blank=True)
     update = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 
@@ -19,7 +19,7 @@ class Post(models.Model):
         return str(self.host)
 
 
-class Comment(models.Model):
+class Message(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     body = models.TextField()
