@@ -1,0 +1,317 @@
+{% extends 'index.html' %}
+{% block content %}
+{% load static %}
+
+<!-- Hero Section -->
+<section class="section-hero" id="home">
+  <div class="hero">
+    <div class="hero-text-box">
+      <p class="hero-sub">Join the Hive, Connect Now</p>
+      <h1 class="heading-primary">
+        Discover the <span>Revolutionary</span> New Social Media App - Hive!
+      </h1>
+      <p class="hero-description">
+        A brand-new social media platform called Hive combines the best elements of all the most popular social
+        media sites.
+      </p>
+
+      <div class="input-group input-group-pad">
+        <input type="email" class="input" id="Email" name="Email" placeholder="someone@test.com" autocomplete="off">
+        <input class="button--submit" value="Subscribe" type="submit">
+      </div>
+
+      <div class="rating">
+        <img src='{% static "img/rating.png" %}' class="rating-stars" alt="rating stars icons">
+        <p class="subheading">"No matter where they are in the world, you can keep in touch with the people you care
+          about using Hive."</p>
+        <p class="user-name">Hadi Soufan</p>
+        <span class="user-job">Web Developer</span>
+      </div>
+    </div>
+
+    <div class="hero-img-box">
+      <img class="hero-img" src='{% static "img/hero-img.png" %}' alt="social img">
+      <button class="scroll-down-btn">
+        <div class="scroll"> </div>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Featured section -->
+<section class="section-featured section" id="feature">
+  <div class="container">
+    <h2 class="heading-featured-in">As featured in</h2>
+    <div class="logos">
+
+      <img src='{% static "img/techcrunch.png" %}' alt="Techcrunch logo" />
+      <img src='{% static "img/business-insider.png" %}' alt="Business Insider logo" />
+      <img src='{% static "img/the-new-york-times.png" %}' alt="The New York Times logo" />
+      <img src='{% static "img/forbes.png" %}' alt="Forbes logo" />
+      <img src='{% static "img/usa-today.png" %}' alt="USA Today logo" />
+    </div>
+  </div>
+</section>
+
+<!-- Why us section -->
+<section class="section-why section" id="why">
+  <div class="container center-text">
+    <h2 class="heading-secondary">Why Choose Us?</h2>
+    <h2 class="subheading margin--bottom-md">Hive is an all-in-one social media platform that offers a convenient
+      and secure way to stay connected with friends and
+      family globally.</h2>
+  </div>
+  <div class="container grid grid--3-cols">
+    <div class="card">
+      <img class="feature-img img--check" src='{% static "img/pc.png" %}' alt="PC icon">
+      <p class="feature-title">All-in-One Platform</p>
+      <p class="feature-text">Hive combines the best features of all popular social media platforms, making it an
+        all-in-one solution for social
+        interaction, entertainment, and communication.</p>
+    </div>
+    <div class="card">
+      <img class="feature-img" src='{% static "img/private.png" %}' alt="Privacy and Security icon">
+      <p class="feature-title">Privacy and Security</p>
+      <p class="feature-text">Hive prioritizes the privacy and security of its users and has been designed with
+        these values in mind. You can trust
+        that your data is secure while using the platform.</p>
+    </div>
+    <div class="card">
+      <img class="feature-img" src='{% static "img/worlwide.png" %}' alt="Global icon">
+      <p class="feature-title">Global Connectivity</p>
+      <p class="feature-text">With Hive, you can stay in touch with friends and family no matter where they are in
+        the world. It's a great way to stay
+        connected with loved ones and stay up-to-date on their lives.</p>
+    </div>
+  </div>
+
+
+</section>
+
+<!-- About us Section -->
+<section class="section-about section" id="about">
+  <div class="container grid grid--2-cols grid--center-v">
+
+    <!-- 1 -->
+    <div class="step-text-box">
+      <h3 class="heading-tertiary">
+        About US
+      </h3>
+      <p class="step-description">With Hive, staying in touch with loved ones is easier than ever. The platform
+        provides a variety of communication
+        options such as talking with friends, conducting video chats, and even editing your profile page. No matter
+        where your
+        friends and family are located in the world, Hive makes it possible to stay connected.</p>
+      <button class="cta" onclick="window.location.href='about.html'">
+        <span class="hover-underline-animation">Learn More</span>
+        <svg viewBox="0 0 46 16" height="10" width="30" xmlns="http://www.w3.org/2000/svg" id="arrow-horizontal">
+          <path transform="translate(30)" d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+            data-name="Path 10" id="Path_10"></path>
+        </svg>
+
+      </button>
+    </div>
+
+    <div class="step-img-box">
+      <img class="step-img" src='{% static "img/mobile-1.png" %}' alt="iphone mock up" />
+    </div>
+
+    <!-- 2 -->
+    <div class="step-img-box">
+      <img class="step-img" src='{% static "img/mobile-2.png" %}' alt="iphone mock up" />
+    </div>
+
+    <div class="step-text-box">
+      <h3 class="heading-tertiary">
+        Social media features
+      </h3>
+      <p class="step-description">Hive combines the best features of the most widely used social media platforms.
+        You can post, like, and share stories,
+        as well as upload content to other social media websites. The platform also offers shopping options, making
+        it easy to
+        buy and sell items online. With Hive, you can enjoy all the social media features you love in one convenient
+        place.</p>
+      <button class="cta" onclick="window.location.href='about.html'">
+        <span class="hover-underline-animation"> Learn More </span>
+        <svg viewBox="0 0 46 16" height="10" width="30" xmlns="http://www.w3.org/2000/svg" id="arrow-horizontal">
+          <path transform="translate(30)" d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+            data-name="Path 10" id="Path_10"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- 3 -->
+    <div class="step-text-box">
+      <h3 class="heading-tertiary">
+        Privacy and security
+      </h3>
+      <p class="step-description">The creators of Hive designed the platform with privacy and security in mind. You
+        can be confident that your data is
+        secure when using Hive, giving you peace of mind while interacting with others online. With Hive, you can
+        enjoy social
+        interaction without sacrificing your privacy and security.</p>
+      <button class="cta" onclick="window.location.href='about.html'">
+        <span class="hover-underline-animation"> Learn More </span>
+        <svg viewBox="0 0 46 16" height="10" width="30" xmlns="http://www.w3.org/2000/svg" id="arrow-horizontal">
+          <path transform="translate(30)" d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+            data-name="Path 10" id="Path_10"></path>
+        </svg>
+      </button>
+
+    </div>
+
+    <div class="step-img-box step--img-box">
+      <img class="step-img" src='{% static "img/mobile-3.png" %}' alt="iphone mock up" />
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="section-3 center section" id="testimonial">
+  <h2 class="heading-secondary test-heading">Testimonials</h2>
+  <h2 class="subheading margin--bottom-md">Hive has made staying connected with loved ones a seamless and secure
+    experience.</h2>
+
+  <div class="section-3-content center">
+    <img src='{% static "img/macbook-screen.png" %}' class="macbook-img-1">
+    <img src='{% static "img/macbook-keyboard.png" %}' class="macbook-img-2">
+
+    <div class="loading-wrapper">
+      <div class="loading center">
+        <i class="fas fa-infinity"></i>
+        <div class="progress-bar"></div>
+      </div>
+    </div>
+
+    <div class="macbook-info">
+      <div class="outerdiv">
+        <div class="innerdiv">
+          <!-- div1 -->
+          <div class="div1 eachdiv">
+            <div class="userdetails">
+              <div class="imgbox">
+                <img
+                  src="https://raw.githubusercontent.com/RahulSahOfficial/testimonials_grid_section/5532c958b7d3c9b910a216b198fdd21c73112d84/images/image-daniel.jpg"
+                  alt="">
+              </div>
+              <div class="detbox">
+                <p class="name">Daniel Clifford</p>
+                <p class="designation">Verified User</p>
+              </div>
+            </div>
+            <div class="review">
+              <h4>I was hesitant to try a new social media platform, but Hive exceeded all my expectations. The
+                ability to conduct video
+                chats, post, and like stories, and even shop all in one place makes it a game-changer. The design is
+                sleek and
+                user-friendly, and I love the option to customize my profile page. I highly recommend giving Hive a
+                try!</h4>
+
+            </div>
+          </div>
+          <!-- div2 -->
+          <div class="div2 eachdiv">
+            <div class="userdetails">
+              <div class="imgbox">
+                <img
+                  src="https://raw.githubusercontent.com/RahulSahOfficial/testimonials_grid_section/5532c958b7d3c9b910a216b198fdd21c73112d84/images/image-jonathan.jpg"
+                  alt="">
+              </div>
+              <div class="detbox">
+                <p class="name">Jonathan Walters</p>
+                <p class="designation">Verified User</p>
+              </div>
+            </div>
+            <div class="review">
+              <h4>The video chat quality is fantastic and the ability to shop and share stories with my friends has
+                made it my go-to social media.</h4>
+            </div>
+          </div>
+          <!-- div3 -->
+          <div class="div3 eachdiv">
+            <div class="userdetails">
+              <div class="imgbox">
+                <img
+                  src="https://raw.githubusercontent.com/RahulSahOfficial/testimonials_grid_section/5532c958b7d3c9b910a216b198fdd21c73112d84/images/image-kira.jpg"
+                  alt="">
+              </div>
+              <div class="detbox">
+                <p class="name dark">Kira Whittle</p>
+                <p class="designation dark">Verified User</p>
+              </div>
+            </div>
+            <div class="review dark">
+              <h4>I've been searching for a social media platform that puts privacy first, and Hive does just that.
+                The security features give me peace of mind and the option to connect with friends and family from
+                all over the world is just icing on the cake.</h4>
+            </div>
+          </div>
+          <!-- div4 -->
+          <div class="div4 eachdiv">
+            <div class="userdetails">
+              <div class="imgbox">
+                <img
+                  src="https://raw.githubusercontent.com/RahulSahOfficial/testimonials_grid_section/5532c958b7d3c9b910a216b198fdd21c73112d84/images/image-jeanette.jpg"
+                  alt="">
+              </div>
+              <div class="detbox">
+                <p class="name dark">Jeanette Harmon</p>
+                <p class="designation dark">Verified User</p>
+              </div>
+            </div>
+            <div class="review dark">
+              <h4>The ability to connect with friends and family in real-time through video chats and the option to
+                shop and share stories make it a must-have app. I've never seen a social media platform that
+                combines so many great features into one app. I highly recommend giving Hive a try.</h4>
+            </div>
+          </div>
+          <!-- div5 -->
+          <div class="div5 eachdiv">
+            <div class="userdetails">
+              <div class="imgbox">
+                <img
+                  src="https://raw.githubusercontent.com/RahulSahOfficial/testimonials_grid_section/5532c958b7d3c9b910a216b198fdd21c73112d84/images/image-patrick.jpg"
+                  alt="">
+              </div>
+              <div class="detbox">
+                <p class="name">Patrick Abrams</p>
+                <p class="designation">Verified User</p>
+              </div>
+            </div>
+            <div class="review">
+              <h4>I've been using Hive for a few months now and I am thoroughly impressed. The video chat feature
+                is seamless, and the option to shop and post stories has made it a staple in my daily routine. I
+                love the customization options for my profile page, it makes my social media experience truly
+                unique. I highly recommend giving Hive a try, you won't be disappointed!</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="testimonial-container">
+    <div class="progress-bar"></div>
+    <div class="fas fa-quote-right fa-quote"></div>
+    <div class="fas fa-quote-left fa-quote"></div>
+    <p class="testimonial">
+      I was hesitant to try a new social media platform, but Hive exceeded all my expectations. The ability to
+      conduct video chats, post, and like stories, and even shop all in one place makes it a game-changer. The
+      design is sleek and user-friendly, and I love the option to customize my profile page. I highly recommend
+      giving Hive a
+      try!
+    </p>
+    <div class="user">
+      <img
+        src="https://raw.githubusercontent.com/RahulSahOfficial/testimonials_grid_section/5532c958b7d3c9b910a216b198fdd21c73112d84/images/image-daniel.jpg"
+        alt="user" class="user-image" />
+      <div class="user-details">
+        <h4 class="username">Daniel Clifford</h4>
+        <p class="role">Verified User</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}
