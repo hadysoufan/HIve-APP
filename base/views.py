@@ -74,6 +74,10 @@ def createPost(request):
 def updatePost(request, pk):
     post = Post.objects.get(id=pk)
     form = PostForm(instance=post)
+
+    if request.user != post.host:
+        return HttpResponse('You are not allowed here')
+    
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid:
@@ -87,6 +91,10 @@ def updatePost(request, pk):
 @login_required(login_url='login')
 def delete(request, pk):
     post = Post.objects.get(id=pk)
+
+    if request.user != post.host:
+        return HttpResponse('You are not allowed here')
+    
     if request.method == 'POST':
         post.delete()
         return redirect('home')
