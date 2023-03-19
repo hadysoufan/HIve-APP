@@ -12,6 +12,10 @@ from .models import Post
 
 
 def loginPage(request):
+
+    if request.user.is_authenticated:
+        return redirect('home')
+
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -77,7 +81,7 @@ def updatePost(request, pk):
 
     if request.user != post.host:
         return HttpResponse('You are not allowed here')
-    
+
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid:
@@ -94,7 +98,7 @@ def delete(request, pk):
 
     if request.user != post.host:
         return HttpResponse('You are not allowed here')
-    
+
     if request.method == 'POST':
         post.delete()
         return redirect('home')
