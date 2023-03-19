@@ -12,11 +12,7 @@
     display: block;
   }
 
-  .post-image {
-    width: 200px;
-    height: 150px;
-    display: block;
-  }
+  
 </style>
 
 
@@ -27,27 +23,7 @@
   </div>
 
   <div class="post-container">
-    <h1>Feeds</h1>
-    <a href="{% url 'home' %}">All</a>
-    <h5>{{post_count}} post available</h5>
-    <a href="{% url 'create-post' %}">Create Post</a>
-
-    {% for post in posts %}
-    <div>
-      {% if request.user == post.host %}
-      <a href="{% url 'update-post' post.id %}">Edit</a>
-      <a href="{% url 'delete' post.id %}">Delete</a>
-      {% endif %}
-      <!-- dont forget to change the url to user when created the route -->
-      <span><a href="{% url 'home' %}?q={{post.host.username}}">@{{post.host.username}}</a></span>
-      {% if post.image %}
-      <img class="post-image" src="{{ post.image.url }}" alt="">
-      {% endif %}
-      <p>{{post.description}}</p>
-      <hr>
-    </div>
-
-    {% endfor %}
+    {% include 'base/feeds.html' %}
   </div>
 
 
