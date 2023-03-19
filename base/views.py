@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-from .forms import PostForm
+from .forms import PostForm, UserForm
 from .models import Post, Message
 
 # Create your views here.
@@ -16,7 +16,7 @@ def loginPage(request):
     page = 'login'
 
     if request.user.is_authenticated:
-        return redirect('home')
+        return redirect('hive')
 
     if request.method == 'POST':
         username = request.POST['username'].lower()
@@ -31,7 +31,7 @@ def loginPage(request):
 
         if user is not None:
             login(request, user)
-            return redirect('home')
+            return redirect('hive')
 
         else:
             messages.error(request, 'Username or password does not exists')
@@ -62,6 +62,8 @@ def registerUser(request):
     context = {'form': form}
     return render(request, 'base/login_register.html', context)
 
+def mainPage(request):
+    return render(request, 'base/main.html')
 
 def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
@@ -72,7 +74,7 @@ def home(request):
     post_count = posts.count()
 
     context = {'posts': posts, 'post_count': post_count}
-    return render(request, 'base/home.html', context)
+    return render(request, 'base/hive.html', context)
 
 
 def post(request, pk):
@@ -102,6 +104,18 @@ def userProfile(request, pk):
     context = {'user': user, 'posts': posts, 'post_messages': post_messages}
     return render(request, 'base/profile.html', context)
 
+def editProfile(request,pk):
+    user = request.user
+    form = UserForm(instance=user)
+
+    if request.method == 'POST':
+        form = UserForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('user-profile', pk=user.id )
+
+    context = {'form': form}
+    return render(request, 'base/edit-profile.html', context)
 
 @login_required(login_url='login')
 def createPost(request):
@@ -110,7 +124,7 @@ def createPost(request):
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('hive')
 
     context = {'form': form}
     return render(request, 'base/post_form.html', context)
@@ -128,7 +142,7 @@ def updatePost(request, pk):
         form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid:
             form.save()
-            return redirect('home')
+            return redirect('hive')
 
     context = {'form': form}
     return render(request, 'base/post_form.html', context)
@@ -143,7 +157,7 @@ def delete(request, pk):
 
     if request.method == 'POST':
         post.delete()
-        return redirect('home')
+        return redirect('hive')
 
     context = {'obj': post}
     return render(request, 'base/delete.html', context)
@@ -158,7 +172,7 @@ def deleteMessage(request, pk):
 
     if request.method == 'POST':
         message.delete()
-        return redirect('home')
+        return redirect('hive')
 
     context = {'obj': message}
     return render(request, 'base/delete.html', context)

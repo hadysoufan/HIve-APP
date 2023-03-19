@@ -1,11 +1,23 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Hive | Welcome</title>
+
+  <!-- Favicon link -->
+  <link rel="shortcut icon" href='{% static "img/honeycomb.png" %}' type="image/x-icon">
+
+  <!-- CSS link -->
+  <link rel="stylesheet" type="text/css" href='{% static "css/styles.css" %}'>
+  <link rel="stylesheet" href='{% static "css/queries.css" %}'>
+
+  <!-- Font awesome link -->
+  <link rel="shortcut icon" href="images/Icons/home-icon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 
 <body>
@@ -25,6 +37,9 @@
 
 
   {% endblock content %}
+
+  <!-- js link -->
+  <script src='{% static "js/script.js" %}'></script>
 
 </body>
 

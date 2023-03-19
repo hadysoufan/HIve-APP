@@ -8,9 +8,11 @@ urlpatterns = [
     path('logout/', views.logoutUser, name='logout'),
     path('register/', views.registerUser, name='register'),
 
-    path('', views.home, name='home'),
+    path('', views.mainPage, name='main'),
+    path('hive/', views.home, name='hive'),
     path('post/<str:pk>', views.post, name='post'),
-    path('profile/<str:pk>/', views.userProfile, name='user-profile'),
+    path('user-profile/<str:pk>/', views.userProfile, name='user-profile'),
+    path('edit-profile/<str:pk>/', views.editProfile, name='edit-profile'),
 
     path('create-post/', views.createPost, name='create-post'),
     path('update-post/<str:pk>', views.updatePost, name='update-post'),
