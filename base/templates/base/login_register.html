@@ -1,15 +1,10 @@
 {% extends 'index.html' %}
-
 {% block content %}
 
-<style>
-  .login{
-    margin-top: 15rem;
-  }
-</style>
+
 
 {% if page == 'login' %}
-<div class="login">
+<div class="container-signup forms">
   <form action="" method="POST">
     {% csrf_token %}
 
@@ -27,7 +22,7 @@
 </div>
 
 {% else %}
-<div>
+<div class="container-signup forms">
   <form action="" method="POST">
     {% csrf_token %}
     {{form.as_p}}

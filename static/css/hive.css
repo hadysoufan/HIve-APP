@@ -54,6 +54,7 @@ body {
   aspect-ratio: 1/1;
   border-radius: 50%;
   overflow: hidden;
+  margin-bottom: 1rem;
 }
 
 img {
@@ -816,7 +817,4 @@ fieldset[disabled] .form-control {
     display: none;
   }
 }
-
-/* Upload Demo */
-
 

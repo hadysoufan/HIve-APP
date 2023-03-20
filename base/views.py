@@ -1,13 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from .forms import PostForm, UserForm
-from .models import Post, Message
+from .models import Post, Message, User
 
 # Create your views here.
 
@@ -21,6 +20,8 @@ def loginPage(request):
     if request.method == 'POST':
         username = request.POST['username'].lower()
         password = request.POST['password']
+
+        print(request.POST)
 
         try:
             user = User.object.get(username=username)
@@ -42,7 +43,7 @@ def loginPage(request):
 
 def logoutUser(request):
     logout(request)
-    return redirect('home')
+    return redirect('main')
 
 
 def registerUser(request):
@@ -55,15 +56,17 @@ def registerUser(request):
             user.username = user.username.lower()
             user.save()
             login(request, user)
-            return redirect('home')
+            return redirect('hive')
         else:
             messages.error(request, 'An Error occured during registration')
 
     context = {'form': form}
     return render(request, 'base/login_register.html', context)
 
+
 def mainPage(request):
     return render(request, 'base/main.html')
+
 
 def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
@@ -104,18 +107,20 @@ def userProfile(request, pk):
     context = {'user': user, 'posts': posts, 'post_messages': post_messages}
     return render(request, 'base/profile.html', context)
 
-def editProfile(request,pk):
+
+def editProfile(request, pk):
     user = request.user
     form = UserForm(instance=user)
 
     if request.method == 'POST':
-        form = UserForm(request.POST, instance=user)
+        form = UserForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
             form.save()
-            return redirect('user-profile', pk=user.id )
+            return redirect('user-profile', pk=user.id)
 
     context = {'form': form}
     return render(request, 'base/edit-profile.html', context)
+
 
 @login_required(login_url='login')
 def createPost(request):

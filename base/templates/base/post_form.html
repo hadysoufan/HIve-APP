@@ -1,10 +1,21 @@
 {% extends 'main.html' %}
-
-
 {% block content %}
 
+<style>
+  .post-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    margin: 0 auto;
+    width: 50%;
+    height: 90vh;
+  }
+</style>
+
 <div>
-  <form action="" method="POST" enctype="multipart/form-data">
+  <form action="" method="POST" enctype="multipart/form-data" class="post-form">
     {% csrf_token %}
     {{form.as_p}}
 

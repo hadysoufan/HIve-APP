@@ -8,7 +8,11 @@
   <div class="container">
     <div class="profile">
       <div class="profile-image">
-        <img class="main-profile-img" src="{% static 'img/default.png' %}" alt="Default Img">
+        {% if user.avatar %}
+        <img src="{{ user.avatar.url }}" alt=" avatar">
+        {% else %}
+        <img src="{% static 'img/default.png' %}" alt="Default Img">
+        {% endif %}
       </div>
       <div class="profile-user-settings">
         <h1 class="profile-user-name">{{user.username}}</h1>
@@ -38,7 +42,7 @@
     <div class="gallery">
       <div class="gallery-item" tabindex="0">
         {% if post.image %}
-        <img src="{{ post.image.url }}" class="gallery-image" alt="">
+        <img class="post-image" src="{{ post.image.url }}"  alt="">
         {% endif %}
         <div class="gallery-item-info">
           <ul>

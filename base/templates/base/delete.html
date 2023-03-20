@@ -2,7 +2,13 @@
 
 {% block content %}
 
-<form action="" method="POST">
+<style>
+  .delete-form {
+    margin-top: 5rem;
+  }
+</style>
+
+<form action="" method="POST" class="delete-form">
   {% csrf_token %}
 
   <p>Are you sure you want to delete "{{obj}}" ?</p>

@@ -1,41 +1,64 @@
 {% extends 'main.html' %}
-
 {% block content %}
-
+{% load static %}
 <style>
-  .post-image {
-    width: 200px;
-    height: 150px;
-    display: block;
-  }
+  /* Post styles*/
 
   .post-container {
     display: grid;
     grid-template-columns: 3fr 1fr;
+    margin-top: 10rem;
+  }
+
+  .post-image {
+    width: 150%;
+    height: auto;
+    display: block;
+  }
+
+  .post-feed {
+    width: 50%;
+    height: 50vh;
+    position: relative;
+    left: 10%;
+  }
+
+  .caption {
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+
+  .comment-wrapper {
+    margin-top: 1rem;
+  }
+
+  .comment-container {
+    display: inline;
+  }
+
+  .comment-input {
+    padding: 1.2rem;
+    margin-top: 1.2rem;
   }
 </style>
 
 <div class="post-container">
-
-  <div>
-
-
-    <h1>{{post.name}}</h1>
-    {% if post.image %}
+  <div class="post-feed">
+    <h3><a href="{% url 'user-profile' user.id %}">{{user.name}}</a></h3>
     <img class="post-image" src="{{ post.image.url }}" alt="">
     {% endif %}
-    <p>{{post.description}}</p>
+    <p class="caption">{{post.description}}</p>
 
     <div class="comment-wrapper">
       <h3>Comments</h3>
-      <hr>
+
 
       {% for message in post_messages %}
-      <div>
+      <div class="comment-container">
         {% if request.user == message.user %}
         <a href="{% url 'delete-message' message.id %}">Delete</a>
         {% endif %}
-        <small>@{{message.user}} {{message.created|timesince}} ago</small>
+        <small>{{user.name}} {{message.created|timesince}} ago</small>
         <p>{{message.body}}</p>
         <hr>
       </div>
@@ -48,7 +71,7 @@
     <div class="comment-form">
       <form action="" method="POST">
         {% csrf_token %}
-        <input type="text" name="body" placeholder="write message here" />
+        <input class="comment-input" type="text" name="body" placeholder="write message here" />
       </form>
     </div>
     {% endif %}
@@ -60,7 +83,8 @@
 
     {% for user in participants %}
     <div>
-      <p>@{{user.username}}</p>
+      <a href="{% url 'user-profile' user.id %}">@{{user.username}}</a>
+      <p>{{message.body}}</p>
     </div>
 
     {% endfor %}
