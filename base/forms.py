@@ -1,15 +1,15 @@
 from django.forms import ModelForm
-from django.contrib.auth.models import User
-from .models import Post
+from .models import Post, User
+from django.contrib.auth.forms import UserCreationForm
 
 
 class PostForm(ModelForm):
     class Meta:
         model = Post
-        fields = '__all__'
+        fields = ['image', 'description']
 
 
 class UserForm(ModelForm):
     class Meta:
         model = User
-        fields = ['username', 'email']
+        fields = ['avatar', 'name', 'username', 'email', 'bio']
