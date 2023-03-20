@@ -144,8 +144,8 @@ body {
 /* Gallery Section */
 
 .gallery {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   margin: -1rem -1rem;
   padding-bottom: 3rem;
 }
@@ -156,6 +156,11 @@ body {
   margin: 1rem;
   color: #fff;
   cursor: pointer;
+}
+
+.post-image {
+  width: 200px;
+  height: 150px;
 }
 
 .gallery-item:hover .gallery-item-info,
