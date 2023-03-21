@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-from .forms import PostForm, UserForm
+from .forms import PostForm, UserForm, MyUserCreationForm
 from .models import Post, Message, User
 
 # Create your views here.
@@ -18,17 +18,15 @@ def loginPage(request):
         return redirect('hive')
 
     if request.method == 'POST':
-        username = request.POST['username'].lower()
-        password = request.POST['password']
-
-        print(request.POST)
+        email = request.POST.get('email').lower()
+        password = request.POST.get('password')
 
         try:
-            user = User.object.get(username=username)
+            user = User.objects.get(email=email)
         except:
             messages.error(request, 'User does not exists')
 
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(request, email=email, password=password)
 
         if user is not None:
             login(request, user)
@@ -47,18 +45,17 @@ def logoutUser(request):
 
 
 def registerUser(request):
-    form = UserCreationForm()
+    form = MyUserCreationForm(request.POST)
 
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save(commit=False)
-            user.username = user.username.lower()
-            user.save()
-            login(request, user)
-            return redirect('hive')
-        else:
-            messages.error(request, 'An Error occured during registration')
+    if form.is_valid():
+        user = form.save(commit=False)
+        user.username = user.username.lower()
+        user.save()
+        login(request, user)
+        return redirect('hive')
+
+    else:
+        messages.error(request, 'An Error occured during registration')
 
     context = {'form': form}
     return render(request, 'base/login_register.html', context)
@@ -128,10 +125,15 @@ def createPost(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            host = request.user
+            post = form.save(commit=False)
+            post.host = host
+            post.save()
+            form.save_m2m()
             return redirect('hive')
 
     context = {'form': form}
+    print(context)
     return render(request, 'base/post_form.html', context)
 
 

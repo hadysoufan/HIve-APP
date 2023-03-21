@@ -1,20 +1,58 @@
 {% extends 'main.html' %}
 {% block content %}
+{% load static %}
 
 <style>
+  body {
+    background: url('/static/img/signup-form-img.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+  }
+
   .post-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    align-self: center;
-    margin: 0 auto;
-    width: 50%;
-    height: 90vh;
+    max-width: 500px;
+    margin: 17rem auto 0 auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .post-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #ff8906;
+  }
+
+  .post-form input[type="text"],
+  .post-form textarea,
+  .post-form input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .post-form input[type="submit"] {
+    background-color: #ff8906;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .post-form input[type="submit"]:hover {
+    background-color: #ff6401;
   }
 </style>
 
-<div>
+<div class="form-div">
   <form action="" method="POST" enctype="multipart/form-data" class="post-form">
     {% csrf_token %}
     {{form.as_p}}

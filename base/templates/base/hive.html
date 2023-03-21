@@ -226,14 +226,14 @@
           <div class="head">
             <div class="user">
               <div class="profile-picture">
-                {% if user.avatar %}
-                <img src="{{ user.avatar.url }}" alt=" avatar">
+                {% if post.host.avatar %}
+                <img src="{{ post.host.avatar.url }}" alt=" avatar">
                 {% else %}
                 <img src="{% static 'img/default.png' %}" alt="Default Img">
                 {% endif %}
               </div>
               <div class="info">
-                <h3><a href="{% url 'user-profile' user.id %}">{{user.name}}</a></h3>
+                <h3><a href="{% url 'user-profile' user.id %}">{{post.host.username}}</a></h3>
                 <small>{{ post.created|timesince }}</small>
               </div>
             </div>
@@ -269,7 +269,7 @@
           <p>Liked by <b>Hadi Soufan</b> and <b>23433 others</b></p>
         </div>
         <div class="caption">
-          <p> <b><a href="{% url 'user-profile' user.id %}">@{{post.host.username}}</a></b> {{post.description}}
+          <p> <b><a href="{% url 'user-profile' user.id %}">{{post.host.name}}</a></b> {{post.description}}
           </p>
         </div>
         <div class=" comments text-muted"> View all 277 comments</div>

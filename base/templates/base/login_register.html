@@ -1,15 +1,66 @@
 {% extends 'index.html' %}
 {% block content %}
 
+<style>
+  body {
+    background: url('/static/img/signup-form-img.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+  }
+.container-signup {
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+}
 
+.container-signup form {
+  display: inline-block;
+  text-align: left;
+}
+
+.container-signup form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.container-signup form input[type="email"],
+.container-signup form input[type="password"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.container-signup form input[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.container-signup p {
+  margin-top: 20px;
+}
+
+.container-signup a {
+  color: #007bff;
+}
+
+
+</style>
 
 {% if page == 'login' %}
 <div class="container-signup forms">
   <form action="" method="POST">
     {% csrf_token %}
 
-    <label>UserName:</label>
-    <input type="text" name="username" placeholder="Enter username" />
+    <label>Email:</label>
+    <input type="email" name="email" placeholder="Enter Email" />
 
     <label>Password:</label>
     <input type="password" name="password" placeholder="Enter password" />

@@ -1,7 +1,7 @@
 {% load static %}
 <section class="nav-bar">
   <nav>
-    
+
     <div class="container">
       <h2 class="logo"><a href="{% url 'hive' %}">Hive</a></h2>
       <div class="search-bar">
@@ -10,17 +10,17 @@
       </div>
       <div class="create">
         <a href="{% url 'create-post' %}"><button class="btn btn-primary" for="create-post">Create</button></a>
-        
+
         <div class="profile-picture">
           <a href="{% url 'user-profile' user.id %}">
             {% if user.avatar %}
             <img src="{{ user.avatar.url }}" alt=" avatar">
             {% else %}
-            <img src="{% static 'img/default.png' %}" alt="Default Img">  
+            <img src="{% static 'img/default.png' %}" alt="Default Img">
             {% endif %}
           </a>
         </div>
-    
+
       </div>
     </div>
   </nav>
