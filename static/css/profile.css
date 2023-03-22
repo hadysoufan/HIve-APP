@@ -144,8 +144,8 @@ body {
 /* Gallery Section */
 
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   margin: -1rem -1rem;
   padding-bottom: 3rem;
 }
@@ -156,11 +156,13 @@ body {
   margin: 1rem;
   color: #fff;
   cursor: pointer;
+  height: 20rem;
 }
 
 .post-image {
-  width: 200px;
-  height: 150px;
+  max-width: 100%;
+  height: 100%; 
+  object-fit: cover; 
 }
 
 .gallery-item:hover .gallery-item-info,
@@ -351,110 +353,6 @@ body {
 }
 
 /*  */
-
-/* .form-wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 900px;
-  margin: 1rem auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.user-image {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 350px;
-  height: 350px;
-  margin-right: 20px;
-}
-
-.user-image img {
-  display: block;
-  margin: 0 auto 10px;
-  width: 300px;
-  height: 280px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 2px solid #ccc;
-}
-
-.upload-btn-wrapper {
-  position: relative;
-  overflow: hidden;
-  display: inline-block;
-}
-
-.btn-form {
-  display: block;
-  margin: 10px auto;
-  padding: 10px 20px;
-  background-color: #e67b05;
-  border-color: #e67b05;
-  color: #fff;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.btn-form:hover {
-  background-color: #ff8906;
-}
-
-.upload-btn-wrapper input[type='file'] {
-  font-size: 100px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0;
-  cursor: pointer;
-  height: 10rem;
-}
-
-.form-inputs {
-  flex-grow: 1;
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 10px;
-  font-weight: bold;
-}
-
-.form-group input[type='text'],
-.form-group input[type='email'],
-.form-group textarea,
-.form-group select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-input[type='submit'] {
-  display: block;
-  margin: 20px auto 0;
-  padding: 10px 20px;
-  background-color: #e67b05;
-  border-color: #e67b05;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-input[type='submit']:hover {
-  background-color: #ff8906;
-} */
 
 .django-form {
   max-width: 500px;

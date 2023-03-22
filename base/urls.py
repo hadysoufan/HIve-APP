@@ -19,5 +19,6 @@ urlpatterns = [
     path('delete-post/<str:pk>', views.delete, name='delete-post'),
     path('delete-message/<str:pk>', views.deleteMessage, name='delete-message'),
 
+
 ] + static(settings.MEDIA_URL,
            document_root=settings.MEDIA_ROOT)

@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
+from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from .forms import PostForm, UserForm, MyUserCreationForm
@@ -13,6 +14,9 @@ from .models import Post, Message, User
 
 def loginPage(request):
     page = 'login'
+    user_count = User.objects.count()
+
+    print(f'count of users: {user_count}')
 
     if request.user.is_authenticated:
         return redirect('hive')
@@ -47,6 +51,8 @@ def logoutUser(request):
 def registerUser(request):
     form = MyUserCreationForm(request.POST)
 
+    
+
     if form.is_valid():
         user = form.save(commit=False)
         user.username = user.username.lower()
@@ -75,7 +81,6 @@ def home(request):
 
     context = {'posts': posts, 'post_count': post_count}
     return render(request, 'base/hive.html', context)
-
 
 def post(request, pk):
     post = Post.objects.get(id=pk)
@@ -183,3 +188,5 @@ def deleteMessage(request, pk):
 
     context = {'obj': message}
     return render(request, 'base/delete.html', context)
+
+

@@ -6,3 +6,4 @@ from .models import Post, Message, User
 admin.site.register(User)
 admin.site.register(Post)
 admin.site.register(Message)
+

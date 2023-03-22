@@ -15,7 +15,7 @@
           {% endif %}
         </div>
         <div class="handle">
-          <h4>{{user.name}}</h4>
+          <h4 class="user-name">{{user.name}}</h4>
           <p class="text-muted">
             @{{user.username}}
           </p>
@@ -31,10 +31,10 @@
           <h3>Home</h3>
         </a>
 
-        <!-- Explore link -->
+        <!-- Room link -->
         <a class="menu-item">
           <span><i class="uil uil-compass"></i></span>
-          <h3>Explore</h3>
+          <h3>Create Room</h3>
         </a>
 
         <!-- nofitication link -->
@@ -230,10 +230,10 @@
                 <img src="{{ post.host.avatar.url }}" alt=" avatar">
                 {% else %}
                 <img src="{% static 'img/default.png' %}" alt="Default Img">
-                {% endif %}
+                {% endif %}default.png
               </div>
               <div class="info">
-                <h3><a href="{% url 'user-profile' user.id %}">{{post.host.username}}</a></h3>
+                <h3><a href="{% url 'user-profile' post.host.id %}">{{post.host.name}}</a></h3>
                 <small>{{ post.created|timesince }}</small>
               </div>
             </div>
@@ -375,87 +375,34 @@
 
     <!-- friend request -->
     <div class="friend-requests">
-      <h4>Requests</h4>
+      <h4>Suggestions</h4>
 
-      <!-- request 1 -->
-      <div class="request">
-        <div class="info">
-          <div class="profile-picture">
-            <img src="{% static 'img/profile-7.jpg' %}" alt="">
-          </div>
-          <div>
-            <h5>Melia Soufan</h5>
-            <p class="text-muted">
-              8 mutual friends
-            </p>
-          </div>
+    {% for post in posts %}
+    {% if post.host != request.user %}
+    <!-- request 1 -->
+    <div class="request">
+      <div class="info">
+        <div class="profile-picture">
+          <img src="{{ post.host.avatar.url }}" alt="">
         </div>
-        <div class="action">
-          <button class="btn btn-primary">Accept</button>
-          <button class="btn">Decline</button>
+        <div>
+          <a href="{% url 'user-profile' post.host.id %}">
+            <h5>{{post.host.name}}</h5>
+          </a>
+          <p class="text-muted">
+            8 mutual friends
+          </p>
         </div>
       </div>
-
-      <!-- request 2 -->
-      <div class="request">
-        <div class="info">
-          <div class="profile-picture">
-            <img src="{% static 'img/profile-8.jpg' %}" alt="">
-          </div>
-          <div>
-            <h5>Melia Soufan</h5>
-            <p class="text-muted">
-              8 mutual friends
-            </p>
-          </div>
-        </div>
-        <div class="action">
-          <button class="btn btn-primary">Accept</button>
-          <button class="btn">Decline</button>
-        </div>
-      </div>
-
-      <!-- request 3 -->
-      <div class="request">
-        <div class="info">
-          <div class="profile-picture">
-            <img src="{% static 'img/profile-9.jpg' %}" alt="">
-          </div>
-          <div>
-            <h5>Melia Soufan</h5>
-            <p class="text-muted">
-              8 mutual friends
-            </p>
-          </div>
-        </div>
-        <div class="action">
-          <button class="btn btn-primary">Accept</button>
-          <button class="btn">Decline</button>
-        </div>
-      </div>
-
-      <!-- request 4 -->
-      <div class="request">
-        <div class="info">
-          <div class="profile-picture">
-            <img src="{% static 'img/profile-10.jpg' %}" alt="">
-          </div>
-          <div>
-            <h5>Melia Soufan</h5>
-            <p class="text-muted">
-              8 mutual friends
-            </p>
-          </div>
-        </div>
-        <div class="action">
-          <button class="btn btn-primary">Accept</button>
-          <button class="btn">Decline</button>
-        </div>
+      <div class="action">
+        <button class="btn btn-primary">Follow</button>
       </div>
     </div>
+    {% endif %}
+    {% endfor %}
+
+    </div>
   </div>
-
-
   </div>
 </main>
 

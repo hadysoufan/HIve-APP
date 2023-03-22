@@ -47,6 +47,7 @@ body {
 .container {
   width: 80%;
   margin: 0 auto;
+  padding: 0.27rem 0 !important;
 }
 
 .profile-picture {
@@ -54,7 +55,7 @@ body {
   aspect-ratio: 1/1;
   border-radius: 50%;
   overflow: hidden;
-  margin-bottom: 1rem;
+  margin-top: 0.25rem;
 }
 
 img {
@@ -74,11 +75,13 @@ img {
 
 .btn:hover {
   opacity: 0.8;
+  background-color: #b36004;
 }
 
 .btn-primary {
   background: var(--color-primary);
   color: #fff;
+  border-color: inherit;
 }
 
 .text-bold {
@@ -107,10 +110,40 @@ nav .container {
   justify-content: space-between;
 }
 
+.logo-header {
+  display: flex;
+  gap: 1rem;
+}
+
+.container .logo-header .logo a {
+  color: #ff8906;
+}
+
+.logo {
+  margin-top: 0.3rem;
+}
+
+.container .logo-header .logo:visited a {
+  color: #ff8906 !important;
+}
+
+.container .logo-header .logo:hover a {
+  color: #b36004;
+}
+
+.logo-img {
+  width: 40px;
+  height: 35px;
+}
+
 .search-bar {
   background: var(--color-light);
   border-radius: var(--border-radius);
   padding: var(--search-padding);
+}
+
+.search-bar i{
+  color: #ff8906;
 }
 
 .search-bar input[type='search'] {
@@ -130,6 +163,44 @@ nav .create {
   align-items: center;
   gap: 2rem;
 }
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  background-color: white;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  color: #b36004;
+}
+
+.dropdown-btn {
+  background: none;
+  border: none;
+  outline: none;
+  color: #ff8906;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.dropdown-btn:hover{
+  background-color: #fff;
+  color: #ff8906;
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 0.5rem;
+  color: #b36004;
+  text-decoration: none;
+}
+
+.dropdown-content a:hover {
+  background-color: #eee;
+}
+
 
 .mobile-navbar {
   display: none;
@@ -200,6 +271,10 @@ main .container .left .profile {
   align-items: center;
   column-gap: 1rem;
   width: 100%;
+}
+
+.container .left .profile .user-name{
+  color: #b36004 !important;
 }
 
 /* sidebar style */
@@ -817,4 +892,3 @@ fieldset[disabled] .form-control {
     display: none;
   }
 }
-
