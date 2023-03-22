@@ -3,22 +3,33 @@
   <nav>
 
     <div class="container">
-      <h2 class="logo"><a href="{% url 'hive' %}">Hive</a></h2>
-      <div class="search-bar">
-        <i class="uil uil-search"></i>
-        <input type="search" name="q" placeholder="search here">
+      <div class="logo-header">
+        <img src="{% static 'img/honeycomb.png' %}" class="logo-img" alt="">
+        <h2 class="logo"><a href="{% url 'hive' %}">Hive</a></h2>
       </div>
+      <form method="get" action="{% url 'hive' %}">
+        <div class="search-bar">
+          <i class="uil uil-search"></i>
+          <input type="search" name="q" placeholder="search here" autocomplete="off">
+        </div>
+      </form>
       <div class="create">
         <a href="{% url 'create-post' %}"><button class="btn btn-primary" for="create-post">Create</button></a>
 
         <div class="profile-picture">
           <a href="{% url 'user-profile' user.id %}">
-            {% if user.avatar %}
             <img src="{{ user.avatar.url }}" alt=" avatar">
-            {% else %}
-            <img src="{% static 'img/default.png' %}" alt="Default Img">
-            {% endif %}
           </a>
+        </div>
+
+        <div class="dropdown">
+          <button class="dropdown-btn">
+            <i class="uil uil-ellipsis-v"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="{% url 'logout' %}">Logout</a>
+            <a href="#">Settings</a>
+          </div>
         </div>
 
       </div>
